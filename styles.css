@@ -1,0 +1,493 @@
+
+/* General Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+header {
+    background-color: #2a9d8f;
+    color: white;
+    padding: 1rem;
+    text-align: center; /* Center align header text */
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/* Main Content */
+main {
+    padding: 1rem;
+    flex: 1;
+    text-align: center; /* Center align all text in main */
+}
+
+/* Center the image */
+.center-image {
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* About Section */
+#about {
+    margin: 0 auto;
+    max-width: 800px; /* Limit width for better readability */
+}
+
+#about h2, #about p, #about ul {
+    text-align: center; /* Center align text in about section */
+}
+
+#about ul {
+    list-style-position: inside; /* Align bullet points with centered text */
+    padding-left: 0; /* Remove default padding */
+}
+
+/* Products Overview Section */
+#products-overview {
+    margin: 0 auto;
+    max-width: 800px; /* Limit width for better readability */
+}
+
+#products-overview h2, #products-overview p {
+    text-align: center; /* Center align text in products overview */
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #2a9d8f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.cta-button:hover {
+    background-color: #264653;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 0.5rem;
+    background-color: #2a9d8f;
+    color: white;
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+/* Product List */
+#product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product-item {
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #e9c46a;
+    width: calc(30% - 20px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-item button {
+    background-color: #264653;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-item button:hover {
+    background-color: #2a9d8f;
+}
+
+/* Order Form */
+#order-form {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    background-color: #e9c46a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#order-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+#order-form label {
+    margin-top: 10px;
+}
+
+#order-form input, #order-form textarea, #order-form button {
+    margin-top: 5px;
+    padding: 10px;
+    width: 100%;
+}
+
+#order-form button {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
+}
+
+/* Responsive Images */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+    .product-item {
+        width: calc(100% - 20px);
+    }
+
+    #order-form {
+        width: 100%;
+    }
+}
+/* Quantity Selector Styling */
+.quantity-selector {
+    margin: 10px 0;
+}
+
+.quantity-selector label {
+    font-weight: bold;
+}
+
+.quantity-selector select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Bulk Input Field Styling */
+.bulk-input {
+    margin-top: 10px;
+}
+
+.bulk-input label {
+    font-weight: bold;
+}
+
+.bulk-input input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Cart Styling */
+#cart {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+#cart h2 {
+    margin-bottom: 10px;
+}
+
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cart-items li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#cart button {
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#cart button:hover {
+    background-color: #264653;
+}
+
+/* Modal Styling */
+/* .modal {
+    display: none; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+} */
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative; /* Ensure content is positioned correctly */
+}
+
+.close-button {
+    position: absolute; /* Position the close button */
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #2a9d8f;
+}
+
+.modal button {
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.modal button:hover {
+    background-color: #264653;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Modal Styling */
+/* .modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+} */
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative; /* Ensure content is positioned correctly */
+}
+
+.close-button {
+    position: absolute; /* Position the close button */
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #2a9d8f;
+}
+
+.modal button {
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.modal button:hover {
+    background-color: #264653;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Payment Options Styling */
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-options button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+payment-options button:hover {
+    background-color: #264653;
+}
+
+/* Payment Form Styling */
+#payment-form {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    background-color: #e9c46a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#payment-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+#payment-form label {
+    margin-top: 10px;
+}
+
+#payment-form input, #payment-form textarea, #payment-form button {
+    margin-top: 5px;
+    padding: 10px;
+    width: 100%;
+}
+
+#payment-form button {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Payment Success Message Styling */
+#payment-success {
+    border: 1px solid #2a9d8f;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    background-color: #e9c46a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#payment-success h2 {
+    color: #2a9d8f;
+}
+
+#payment-success p {
+    margin-top: 10px;
+}
+
+/* Responsive Images */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+    .product-item {
+        width: calc(100% - 20px);
+    }
+
+    #order-form {
+        width: 100%;
+    }
+
+    #payment-form {
+        width: 100%;
+    }
+}
+
+/* General Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal {
+    display: flex; /* Use flex for better positioning */
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}

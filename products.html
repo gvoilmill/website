@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - GV Oil Mill</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Our Products</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+    <main>
+        <section id="product-list">
+            <article class="product-item">
+                <h3>Coconut Oil</h3>
+                <img src="coconut-oil.svg" alt="Coconut Oil" class="responsive-img" />
+                <p>Pure coconut oil extracted from the finest coconuts. Rich in antioxidants and perfect for cooking, skincare, and hair care.</p>
+                <div class="quantity-selector">
+                    <label for="coconut-quantity">Select Quantity:</label>
+                    <select id="coconut-quantity" onchange="toggleBulkInput('coconut')">
+                        <option value="1">1 Liter</option>
+                        <option value="5">5 Liters</option>
+                        <option value="bulk">Bulk Order</option>
+                    </select>
+                    <div id="coconut-bulk-input" class="bulk-input hidden">
+                        <label for="coconut-bulk-quantity">Enter Quantity (in Liters):</label>
+                        <input type="number" id="coconut-bulk-quantity" min="1" placeholder="Enter quantity">
+                    </div>
+                </div>
+                <button onclick="addToCart('Coconut Oil', 'coconut')">Add to Cart</button>
+            </article>
+
+            <article class="product-item">
+                <h3>Sesame Oil</h3>
+                <img src="coconut-oil.svg" alt="Sesame Oil" class="responsive-img" />
+                <p>High-quality sesame oil for cooking and health benefits. Known for its rich flavor and nutritional value.</p>
+                <div class="quantity-selector">
+                    <label for="sesame-quantity">Select Quantity:</label>
+                    <select id="sesame-quantity" onchange="toggleBulkInput('sesame')">
+                        <option value="1">1 Liter</option>
+                        <option value="5">5 Liters</option>
+                        <option value="bulk">Bulk Order</option>
+                    </select>
+                    <div id="sesame-bulk-input" class="bulk-input hidden">
+                        <label for="sesame-bulk-quantity">Enter Quantity (in Liters):</label>
+                        <input type="number" id="sesame-bulk-quantity" min="1" placeholder="Enter quantity">
+                    </div>
+                </div>
+                <button onclick="addToCart('Sesame Oil', 'sesame')">Add to Cart</button>
+            </article>
+
+            <article class="product-item">
+                <h3>Groundnut Oil</h3>
+                <img src="coconut-oil.svg" alt="Groundnut Oil" class="responsive-img" />
+                <p>Premium groundnut oil with rich flavor and high nutrition. Ideal for frying and cooking.</p>
+                <div class="quantity-selector">
+                    <label for="groundnut-quantity">Select Quantity:</label>
+                    <select id="groundnut-quantity" onchange="toggleBulkInput('groundnut')">
+                        <option value="1">1 Liter</option>
+                        <option value="5">5 Liters</option>
+                        <option value="bulk">Bulk Order</option>
+                    </select>
+                    <div id="groundnut-bulk-input" class="bulk-input hidden">
+                        <label for="groundnut-bulk-quantity">Enter Quantity (in Liters):</label>
+                        <input type="number" id="groundnut-bulk-quantity" min="1" placeholder="Enter quantity">
+                    </div>
+                </div>
+                <button onclick="addToCart('Groundnut Oil', 'groundnut')">Add to Cart</button>
+            </article>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart">
+            <h2>Your Cart</h2>
+            <ul id="cart-items"></ul>
+            <button onclick="openUserDetailsPopup()">Proceed to Checkout</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 GV Oil Mill</p>
+    </footer>
+
+    <!-- User Details Popup -->
+    <div id="user-details-popup" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeUserDetailsPopup()">&times;</span>
+            <h2>User Details</h2>
+            <form id="user-details-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="mobile">Mobile:</label>
+                <input type="tel" id="mobile" name="mobile" required>
+                <label for="alt-mobile">Alternative Mobile:</label>
+                <input type="tel" id="alt-mobile" name="alt-mobile">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea>
+                <button type="button" onclick="submitUserDetails()">Next</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Methods Popup -->
+    <div id="payment-methods-popup" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" onclick="closePaymentMethodsPopup()">&times;</span>
+            <h2>Payment Methods</h2>
+            <div class="payment-options">
+                <button onclick="selectPaymentMethod('Google Pay')">Google Pay</button>
+                <button onclick="selectPaymentMethod('PhonePe')">PhonePe</button>
+                <button onclick="selectPaymentMethod('Paytm')">Paytm</button>
+                <button onclick="selectPaymentMethod('Cash on Delivery')">Cash on Delivery</button>                
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
