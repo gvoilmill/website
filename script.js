@@ -234,14 +234,21 @@ function closePaymentMethodsPopup() {
 
 
 
+// function togglePopup(popupId, action) {
+//     const popup = document.getElementById(popupId);
+//     if (action === "open") {
+//         popup.classList.remove("hidden");
+//     } else if (action === "close") {
+//         popup.classList.add("hidden");
+//     }
+// }
+
 function togglePopup(popupId, action) {
     const popup = document.getElementById(popupId);
-    if (action === "open") {
-        popup.classList.remove("hidden");
-    } else if (action === "close") {
-        popup.classList.add("hidden");
-    }
+    popup.classList.toggle("hidden", action !== "open");
 }
+
+
 
 function showPopup(popupId) {
     const popup = document.getElementById(popupId);
