@@ -281,7 +281,7 @@ function selectPaymentMethod(method) {
     let paymentUrl = "";
 
     // Replace with your payee details and amount
-    const payeeVPA = "9443033894@upi"; 
+    const payeeVPA = "santhoshvaithi1234@okicici"; 
     const payeeName = "GV Oil Mill";
     const amount = "500"; // Example amount in INR
 
