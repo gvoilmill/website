@@ -470,7 +470,7 @@ body {
 }
 
 .modal {
-    display: flex; /* Use flex for better positioning */
+    display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
