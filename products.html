@@ -18,61 +18,70 @@
     </header>
     <main>
         <section id="product-list">
+            <!-- Coconut Oil -->
             <article class="product-item">
                 <h3>Coconut Oil</h3>
                 <img src="coconut-oil.svg" alt="Coconut Oil" class="responsive-img" />
                 <p>Pure coconut oil extracted from the finest coconuts. Rich in antioxidants and perfect for cooking, skincare, and hair care.</p>
-                <div class="quantity-selector">
+                <p><strong>Price:</strong> ₹300 per liter</p>
+                <div class="quantity-selector" onchange="toggleBulkInput('coconut')">
                     <label for="coconut-quantity">Select Quantity:</label>
-                    <select id="coconut-quantity" onchange="toggleBulkInput('coconut')">
+                    <select id="coconut-quantity" onchange="updatePrice('coconut', 300)">
                         <option value="1">1 Liter</option>
                         <option value="5">5 Liters</option>
                         <option value="bulk">Bulk Order</option>
                     </select>
                     <div id="coconut-bulk-input" class="bulk-input hidden">
                         <label for="coconut-bulk-quantity">Enter Quantity (in Liters):</label>
-                        <input type="number" id="coconut-bulk-quantity" min="1" placeholder="Enter quantity">
+                        <input type="number" id="coconut-bulk-quantity" min="1" placeholder="Enter quantity" oninput="updatePrice('coconut', 300)">
                     </div>
                 </div>
-                <button onclick="addToCart('Coconut Oil', 'coconut')">Add to Cart</button>
+                <p><strong>Total Price:</strong> ₹<span id="coconut-total-price">300</span></p>
+                <button onclick="addToCart('Coconut Oil', 'coconut', 300)">Add to Cart</button>
             </article>
 
+            <!-- Sesame Oil -->
             <article class="product-item">
                 <h3>Sesame Oil</h3>
                 <img src="coconut-oil.svg" alt="Sesame Oil" class="responsive-img" />
                 <p>High-quality sesame oil for cooking and health benefits. Known for its rich flavor and nutritional value.</p>
-                <div class="quantity-selector">
+                <p><strong>Price:</strong> ₹300 per liter</p>
+                <div class="quantity-selector" id="sesame-quantity-selector" onchange="toggleBulkInput('sesame')">
                     <label for="sesame-quantity">Select Quantity:</label>
-                    <select id="sesame-quantity" onchange="toggleBulkInput('sesame')">
+                    <select id="sesame-quantity" onchange="updatePrice('sesame', 300)">
                         <option value="1">1 Liter</option>
                         <option value="5">5 Liters</option>
                         <option value="bulk">Bulk Order</option>
                     </select>
                     <div id="sesame-bulk-input" class="bulk-input hidden">
                         <label for="sesame-bulk-quantity">Enter Quantity (in Liters):</label>
-                        <input type="number" id="sesame-bulk-quantity" min="1" placeholder="Enter quantity">
+                        <input type="number" id="sesame-bulk-quantity" min="1" placeholder="Enter quantity" oninput="updatePrice('sesame', 300)">
                     </div>
                 </div>
-                <button onclick="addToCart('Sesame Oil', 'sesame')">Add to Cart</button>
+                <p><strong>Total Price:</strong> ₹<span id="sesame-total-price">300</span></p>
+                <button onclick="addToCart('Sesame Oil', 'sesame', 300)">Add to Cart</button>
             </article>
 
+            <!-- Groundnut Oil -->
             <article class="product-item">
                 <h3>Groundnut Oil</h3>
                 <img src="coconut-oil.svg" alt="Groundnut Oil" class="responsive-img" />
                 <p>Premium groundnut oil with rich flavor and high nutrition. Ideal for frying and cooking.</p>
-                <div class="quantity-selector">
+                <p><strong>Price:</strong> ₹200 per liter</p>
+                <div class="quantity-selector" onchange="toggleBulkInput('groundnut')">
                     <label for="groundnut-quantity">Select Quantity:</label>
-                    <select id="groundnut-quantity" onchange="toggleBulkInput('groundnut')">
+                    <select id="groundnut-quantity" onchange="updatePrice('groundnut', 200)">
                         <option value="1">1 Liter</option>
                         <option value="5">5 Liters</option>
                         <option value="bulk">Bulk Order</option>
                     </select>
                     <div id="groundnut-bulk-input" class="bulk-input hidden">
                         <label for="groundnut-bulk-quantity">Enter Quantity (in Liters):</label>
-                        <input type="number" id="groundnut-bulk-quantity" min="1" placeholder="Enter quantity">
+                        <input type="number" id="groundnut-bulk-quantity" min="1" placeholder="Enter quantity" oninput="updatePrice('groundnut', 200)">
                     </div>
                 </div>
-                <button onclick="addToCart('Groundnut Oil', 'groundnut')">Add to Cart</button>
+                <p><strong>Total Price:</strong> ₹<span id="groundnut-total-price">200</span></p>
+                <button onclick="addToCart('Groundnut Oil', 'groundnut', 200)">Add to Cart</button>
             </article>
         </section>
 
@@ -80,6 +89,7 @@
         <section id="cart">
             <h2>Your Cart</h2>
             <ul id="cart-items"></ul>
+            <p><strong>Total Cart Price:</strong> ₹<span id="cart-total-price">0</span></p>
             <button onclick="openUserDetailsPopup()">Proceed to Checkout</button>
         </section>
     </main>
@@ -87,7 +97,7 @@
         <p>&copy; 2025 GV Oil Mill</p>
     </footer>
 
-    <!-- User Details Popup -->
+    <!-- User Details and Payment Methods Popups -->
     <div id="user-details-popup" class="modal hidden">
         <div class="modal-content">
             <span class="close-button" onclick="closeUserDetailsPopup()">&times;</span>
@@ -106,16 +116,35 @@
         </div>
     </div>
 
-    <!-- Payment Methods Popup -->
+
     <div id="payment-methods-popup" class="modal hidden">
         <div class="modal-content">
             <span class="close-button" onclick="closePaymentMethodsPopup()">&times;</span>
             <h2>Payment Methods</h2>
             <div class="payment-options">
-                <button onclick="selectPaymentMethod('Google Pay')">Google Pay</button>
-                <button onclick="selectPaymentMethod('PhonePe')">PhonePe</button>
-                <button onclick="selectPaymentMethod('Paytm')">Paytm</button>
-                <button onclick="selectPaymentMethod('Cash on Delivery')">Cash on Delivery</button>                
+                <!-- Google Pay -->
+                <button onclick="selectPaymentMethod('Google Pay')">
+                    <img src="google-pay-logo.png" alt="Google Pay" class="payment-logo" />
+                    Google Pay
+                </button>
+    
+                <!-- PhonePe -->
+                <button onclick="selectPaymentMethod('PhonePe')">
+                    <img src="phonepe-logo.png" alt="PhonePe" class="payment-logo" />
+                    PhonePe
+                </button>
+    
+                <!-- Paytm -->
+                <button onclick="selectPaymentMethod('Paytm')">
+                    <img src="paytm-logo.png" alt="Paytm" class="payment-logo" />
+                    Paytm
+                </button>
+    
+                <!-- Cash on Delivery -->
+                <button onclick="selectPaymentMethod('Cash on Delivery')">
+                    <img src="cod-logo.png" alt="Cash on Delivery" class="payment-logo" />
+                    Cash on Delivery
+                </button>
             </div>
         </div>
     </div>

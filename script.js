@@ -30,112 +30,30 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// // Cart array to store selected items
-// let cart = [];
 
-// // Function to add items to the cart
-// function addToCart(productName, quantity) {
-//     const item = {
-//         product: productName,
-//         quantity: quantity,
-//     };
-//     cart.push(item);
-//     updateCartDisplay();
-//     alert(`${productName} (${quantity}) added to cart!`);
-// }
-
-// // Function to update the cart display
-// function updateCartDisplay() {
-//     const cartItems = document.getElementById('cart-items');
-//     cartItems.innerHTML = ''; // Clear the current cart display
-
-//     cart.forEach((item, index) => {
-//         const li = document.createElement('li');
-//         li.textContent = `${item.product} - ${item.quantity === 'bulk' ? 'Bulk Order' : `${item.quantity} Liter(s)`}`;
-//         cartItems.appendChild(li);
-//     });
-// }
-
-// // Function to handle checkout
-// function checkout() {
-//     if (cart.length === 0) {
-//         alert('Your cart is empty. Please add items to proceed.');
-//     } else {
-//         alert('Proceeding to checkout...');
-//         // Here, you can redirect to a checkout page or process the order
-//         console.log('Cart Items:', cart);
-//         cart = []; // Clear the cart after checkout
-//         updateCartDisplay();
-//     }
-// }
-
-// Cart array to store selected items
-// let cart = [];
-
-// // Function to toggle bulk input field
-// function toggleBulkInput(productType) {
-//     const bulkInput = document.getElementById(`${productType}-bulk-input`);
-//     const quantitySelect = document.getElementById(`${productType}-quantity`);
-
-//     if (quantitySelect.value === 'bulk') {
-//         bulkInput.classList.remove('hidden');
-//     } else {
-//         bulkInput.classList.add('hidden');
-//     }
-// }
-
-// // Function to add items to the cart
-// function addToCart(productName, productType) {
-//     const quantitySelect = document.getElementById(`${productType}-quantity`);
-//     const bulkInput = document.getElementById(`${productType}-bulk-quantity`);
-//     let quantity;
-
-//     if (quantitySelect.value === 'bulk') {
-//         if (!bulkInput.value || bulkInput.value < 1) {
-//             alert('Please enter a valid quantity for bulk order.');
-//             return;
-//         }
-//         quantity = `${bulkInput.value} Liters (Bulk)`;
-//     } else {
-//         quantity = `${quantitySelect.value} Liter(s)`;
-//     }
-
-//     const item = {
-//         product: productName,
-//         quantity: quantity,
-//     };
-//     cart.push(item);
-//     updateCartDisplay();
-//     alert(`${productName} (${quantity}) added to cart!`);
-// }
-
-// // Function to update the cart display
-// function updateCartDisplay() {
-//     const cartItems = document.getElementById('cart-items');
-//     cartItems.innerHTML = ''; // Clear the current cart display
-
-//     cart.forEach((item, index) => {
-//         const li = document.createElement('li');
-//         li.textContent = `${item.product} - ${item.quantity}`;
-//         cartItems.appendChild(li);
-//     });
-// }
-
-// // Function to handle checkout
-// function checkout() {
-//     if (cart.length === 0) {
-//         alert('Your cart is empty. Please add items to proceed.');
-//     } else {
-//         alert('Proceeding to checkout...');
-//         // Here, you can redirect to a checkout page or process the order
-//         console.log('Cart Items:', cart);
-//         cart = []; // Clear the cart after checkout
-//         updateCartDisplay();
-//     }
-// }
-
-// Cart array to store selected items
 let cart = [];
+
+const prices = {
+    coconut: 300,
+    sesame: 300,
+    groundnut: 200,
+};
+
+function updatePrice(productType, pricePerLiter) {
+    const quantitySelect = document.getElementById(`${productType}-quantity`);
+    const bulkInput = document.getElementById(`${productType}-bulk-quantity`);
+    const totalPriceElement = document.getElementById(`${productType}-total-price`);
+
+    let quantity;
+    if (quantitySelect.value === 'bulk') {
+        quantity = bulkInput.value ? parseInt(bulkInput.value) : 0;
+    } else {
+        quantity = parseInt(quantitySelect.value);
+    }
+
+    const totalPrice = quantity * pricePerLiter;
+    totalPriceElement.textContent = totalPrice;
+}
 
 // Function to toggle bulk input field
 function toggleBulkInput(productType) {
@@ -167,14 +85,37 @@ function closePopup() {
 }
 
 // Function to add items to the cart
-function addToCart(productName, productType) {
+// function addToCart(productName, productType) {
+//     const quantitySelect = document.getElementById(`${productType}-quantity`);
+//     const bulkInput = document.getElementById(`${productType}-bulk-quantity`);
+//     let quantity;
+
+//     if (quantitySelect.value === 'bulk') {
+//         if (!bulkInput.value || bulkInput.value < 1) {
+//             showPopup('Error', 'Please enter a valid quantity for bulk order.');
+//             return;
+//         }
+//         quantity = `${bulkInput.value} Liters (Bulk)`;
+//     } else {
+//         quantity = `${quantitySelect.value} Liter(s)`;
+//     }
+
+//     const item = {
+//         product: productName,
+//         quantity: quantity,
+//     };
+//     cart.push(item);
+//     updateCartDisplay();
+//     showPopup('Success', `${productName} (${quantity}) added to cart!`);
+// }
+function addToCart(productName, productType, pricePerLiter) {
     const quantitySelect = document.getElementById(`${productType}-quantity`);
     const bulkInput = document.getElementById(`${productType}-bulk-quantity`);
     let quantity;
 
     if (quantitySelect.value === 'bulk') {
         if (!bulkInput.value || bulkInput.value < 1) {
-            showPopup('Error', 'Please enter a valid quantity for bulk order.');
+            alert('Please enter a valid quantity for bulk order.');
             return;
         }
         quantity = `${bulkInput.value} Liters (Bulk)`;
@@ -182,13 +123,31 @@ function addToCart(productName, productType) {
         quantity = `${quantitySelect.value} Liter(s)`;
     }
 
+    const totalPrice = quantitySelect.value === 'bulk' ? bulkInput.value * pricePerLiter : quantitySelect.value * pricePerLiter;
+
     const item = {
         product: productName,
         quantity: quantity,
+        price: totalPrice,
     };
     cart.push(item);
     updateCartDisplay();
-    showPopup('Success', `${productName} (${quantity}) added to cart!`);
+    alert(`${productName} (${quantity}) added to cart!`);
+}
+function updateCartDisplay() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotalPrice = document.getElementById('cart-total-price');
+    cartItems.innerHTML = ''; // Clear the current cart display
+
+    let totalCartPrice = 0;
+    cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${item.product} - ${item.quantity} - ₹${item.price}`;
+        cartItems.appendChild(li);
+        totalCartPrice += item.price;
+    });
+
+    cartTotalPrice.textContent = totalCartPrice;
 }
 
 // Function to update the cart display
@@ -204,16 +163,38 @@ function updateCartDisplay() {
 }
 
 // Function to handle checkout
-function checkout() {
-    if (cart.length === 0) {
-        showPopup('Error', 'Your cart is empty. Please add items to proceed.');
-    } else {
-        showPopup('Checkout', 'Proceeding to checkout...');
-        // Here, you can redirect to a checkout page or process the order
-        console.log('Cart Items:', cart);
-        cart = []; // Clear the cart after checkout
-        updateCartDisplay();
+function checkout(userDetails, cartItems) {
+    if (cartItems.length === 0) {
+        alert('Your cart is empty. Please add items to proceed.');
+        return;
     }
+
+    // Generate the bill
+    const bill = generateBill(userDetails, cartItems);
+
+    // Send the bill via WhatsApp
+    sendBillViaWhatsApp(userDetails.mobile, bill);
+
+    // Clear the cart after checkout
+    cart = [];
+    updateCartDisplay();
+}
+function generateBill(userDetails, cartItems) {
+    let bill = `*GV Oil Mill Invoice*\n\n`;
+    bill += `*Customer Name:* ${userDetails.name}\n`;
+    bill += `*Mobile:* ${userDetails.mobile}\n`;
+    bill += `*Address:* ${userDetails.address}\n\n`;
+    bill += `*Order Details:*\n`;
+
+    let totalAmount = 0;
+    cartItems.forEach((item, index) => {
+        bill += `${index + 1}. ${item.product} - ${item.quantity} - ₹${item.price}\n`;
+        totalAmount += item.price;
+    });
+
+    bill += `\n*Total Amount:* ₹${totalAmount}\n`;
+    bill += `\n*Thank you for your order!*`;
+    return bill;
 }
 
 function openUserDetailsPopup() {
@@ -224,9 +205,9 @@ function closeUserDetailsPopup() {
     document.getElementById('user-details-popup').classList.add('hidden');
 }
 
-function openPaymentMethodsPopup() {
-    document.getElementById('payment-methods-popup').classList.remove('hidden');
-}
+// function openPaymentMethodsPopup() {
+//     document.getElementById('payment-methods-popup').classList.remove('hidden');
+// }
 
 function closePaymentMethodsPopup() {
     document.getElementById('payment-methods-popup').classList.add('hidden');
@@ -242,13 +223,6 @@ function closePaymentMethodsPopup() {
 //         popup.classList.add("hidden");
 //     }
 // }
-
-function togglePopup(popupId, action) {
-    const popup = document.getElementById(popupId);
-    popup.classList.toggle("hidden", action !== "open");
-}
-
-
 
 function showPopup(popupId) {
     const popup = document.getElementById(popupId);
@@ -281,7 +255,7 @@ function selectPaymentMethod(method) {
     let paymentUrl = "";
 
     // Replace with your payee details and amount
-    const payeeVPA = "santhoshvaithi1234@okicici"; 
+    const payeeVPA = "9443033894@upi"; 
     const payeeName = "GV Oil Mill";
     const amount = "500"; // Example amount in INR
 
@@ -305,4 +279,9 @@ function selectPaymentMethod(method) {
 
     // Open payment URL
     window.location.href = paymentUrl;
+}
+
+function togglePopup(popupId, action) {
+    const popup = document.getElementById(popupId);
+    popup.classList.toggle("hidden", action !== "open");
 }
